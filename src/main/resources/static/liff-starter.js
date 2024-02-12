@@ -1,3 +1,7 @@
+liff.use(
+  new LIFFInspectorPlugin({ origin: "wss://c381-60-89-9-17.ngrok-free.app" })
+);
+
 window.onload = function (e) {
   liff
     .init({
@@ -105,15 +109,30 @@ function initializeApp() {
     .getElementById("sendmessagebutton")
     .addEventListener("click", function (e) {
       e.preventDefault(); // フォームのデフォルトの送信を防止
-      const message = document.getElementById("message").value;
-      console.log(message);
-      const messageLength = message.length;
-      console.log(messageLength);
+      const messageText = document.getElementById("message").value;
+      const messageLength = messageText.length;
+      const userId = "";
+      const userName = "";
+      const message = "";
+      const password = "";
+
       // 条件をチェックしてアラートを表示
-      if (messageLength < 300) {
-        alert("テキストエリア内の文字数が300文字未満です。");
-        return;
-      }
+      // if (messageLength < 300) {
+      //   alert("テキストエリア内の文字数が300文字未満です。");
+      //   return;
+      // }
+
+      // ユーザーID, ユーザー名、取得
+      liff.getProfile().then(function (profile) {
+        userId = profile.userId;
+        userName = profile.displayName;
+        message = userName + "さんから手紙が届きました。";
+      });
+
+      // insertMessage(userId, messageText).then((returnedPassword) => {
+      //   password = returnedPassword;
+      //   message = message + "\\n パスワードはこちら:" + password;
+      // });
 
       if (liff.isApiAvailable("shareTargetPicker")) {
         liff.shareTargetPicker([
@@ -145,4 +164,41 @@ function toggleElement(elementId) {
   } else {
     elem.style.display = "block";
   }
+}
+
+function insertMessage(userId, message) {
+  const url = "https://1f69-60-89-9-17.ngrok-free.app/insertMessage";
+  userId = "Ub6f9ed76f7957f2d505542df8b706a95";
+
+  const data = {
+    lineUserId: userId,
+    messageText: message,
+  };
+
+  const options = {
+    mothod: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+
+  fetch(url, options)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json(); // レスポンスをJSON形式で解析
+    })
+    .then((data) => {
+      console.log("Response data:", data); // レスポンスデータをログに出力
+      if (data.password) {
+        return data.password; // パスワードを戻り値として返す
+      } else {
+        throw new Error("Password not found in the response data");
+      }
+    })
+    .catch((error) => {
+      console.error("There was a problem with the fetch operation:", error);
+    });
 }

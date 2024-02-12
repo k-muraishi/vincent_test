@@ -1,7 +1,5 @@
 package com.local.vincent.service;
 
-import java.security.SecureRandom;
-
 import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 // import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,34 +10,33 @@ import com.local.vincent.properties.LineplatformProperties;
 @Service
 public class PasswordService {
 
-    private final LineplatformProperties lineplatoformProperties;
+	private final LineplatformProperties lineplatoformProperties;
 
-    @Autowired
-    public PasswordService (LineplatformProperties lineplatoformProperties) {
-        this.lineplatoformProperties = lineplatoformProperties;
-    }
-    
-    public String generateRandomPassword() {
-        // // パスワードに使用する文字セット
-        // String characters = lineplatoformProperties.getPasswordBase();
+	@Autowired
+	public PasswordService(LineplatformProperties lineplatoformProperties) {
+		this.lineplatoformProperties = lineplatoformProperties;
+	}
 
-        // // パスワードの長さ
-        // int length = 12;
+	public String generateRandomPassword() {
+		// // パスワードに使用する文字セット
+		// String characters = lineplatoformProperties.getPasswordBase();
 
-        // SecureRandom secureRandom = new SecureRandom();
+		// // パスワードの長さ
+		// int length = 12;
 
-        // StringBuilder password = new StringBuilder(length);
-        // PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		// SecureRandom secureRandom = new SecureRandom();
 
-        // for (int i = 0; i < length; i++) {
-        //     int randomIndex = secureRandom.nextInt(characters.length());
-        //     char randomChar = characters.charAt(randomIndex);
-        //     password.append(randomChar);
-        // }
+		// StringBuilder password = new StringBuilder(length);
+		// PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-        // // パスワードをハッシュ化
-        // return passwordEncoder.encode(password.toString());
-        return "testPass";
-    }
+		// for (int i = 0; i < length; i++) {
+		//     int randomIndex = secureRandom.nextInt(characters.length());
+		//     char randomChar = characters.charAt(randomIndex);
+		//     password.append(randomChar);
+		// }
+
+		// // パスワードをハッシュ化
+		// return passwordEncoder.encode(password.toString());
+		return "testPass";
+	}
 }
-

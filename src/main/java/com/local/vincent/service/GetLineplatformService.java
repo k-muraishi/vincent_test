@@ -12,35 +12,35 @@ import com.local.vincent.properties.LineplatformProperties;
 @Service
 public class GetLineplatformService {
 
-    private final LineplatformProperties lineplatformProperties;
+	private final LineplatformProperties lineplatformProperties;
 
-    @Autowired
-    public GetLineplatformService(LineplatformProperties lineplatformProperties){
-        this.lineplatformProperties = lineplatformProperties;
-    }
+	@Autowired
+	public GetLineplatformService(LineplatformProperties lineplatformProperties) {
+		this.lineplatformProperties = lineplatformProperties;
+	}
 
-    /**
-     * プロフィール情報を取得する
-     */
-    public String getUserinf(String userId, String AccessToken){
-        String userName = "";
+	/**
+	 * プロフィール情報を取得する
+	 */
+	public String getUserinf(String userId, String AccessToken) {
+		String userName = "";
 
-        LineMessagingClient client = LineMessagingClient
-                .builder(AccessToken)
-                .build();
+		LineMessagingClient client = LineMessagingClient
+				.builder(AccessToken)
+				.build();
 
-        try {
-            // apiでユーザーネームを取得する
-            final UserProfileResponse userProfileResponse = client.getProfile(userId).get();
+		try {
+			// apiでユーザーネームを取得する
+			final UserProfileResponse userProfileResponse = client.getProfile(userId).get();
 
-            // 値が取得できなければnullを返す
-            if(userProfileResponse!=null){
-                userName = userProfileResponse.getDisplayName();
-            }
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-            return userName;
-        }
-        return userName;
-    }
+			// 値が取得できなければnullを返す
+			if (userProfileResponse != null) {
+				userName = userProfileResponse.getDisplayName();
+			}
+		} catch (InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+			return userName;
+		}
+		return userName;
+	}
 }

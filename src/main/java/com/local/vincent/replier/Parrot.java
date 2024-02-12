@@ -7,16 +7,16 @@ import com.linecorp.bot.model.message.TextMessage;
 
 // おうむ返し用の返信クラス
 public class Parrot implements Replier {
-    private MessageEvent<TextMessageContent> event;
+	private MessageEvent<TextMessageContent> event;
 
-    public Parrot(MessageEvent<TextMessageContent> event) {
-        this.event = event;
-    }
+	public Parrot(MessageEvent<TextMessageContent> event) {
+		this.event = event;
+	}
 
-    @Override
-    public Message reply(){
-        TextMessageContent tmc = this.event.getMessage();
-        String text = tmc.getText();
-        return new TextMessage(text);
-    }
+	@Override
+	public Message reply() {
+		TextMessageContent tmc = this.event.getMessage();
+		String text = tmc.getText();
+		return new TextMessage(text);
+	}
 }

@@ -1,23 +1,23 @@
 package com.local.vincent.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
 public class UserMessage {
-    @Id
-    /*ユーザーメッセージ中間テーブルID*/
-    private Integer id;
+	@Id
+	/*ユーザーメッセージ中間テーブルID*/
+	private Integer id;
 
-    /*ユーザーID*/
-    private Integer sendUserId;
+	/*ユーザーID*/
+	private Integer sendUserId;
 
-    /*メッセージID*/
-    private Integer messageId;
+	/*メッセージID*/
+	private Integer messageId;
 
 }
